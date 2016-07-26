@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Winner from './Winner';
 import Vote from './Vote';
+import * as actionCreaters from '../action_creators';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 export const Voting = React.createClass({
@@ -19,8 +20,9 @@ export const Voting = React.createClass({
 function mapStateToProps(state) {
 	return {
 		pair: state.getIn(['vote', 'pair']),
-		winner: state.get('winner')
+		winner: state.get('winner'),
+		hasVoted: state.get('hasVoted')
 	};
 }
 
-export const VotingContainer = connect(mapStateToProps)(Voting);
+export const VotingContainer = connect(mapStateToProps, actionCreaters)(Voting);
